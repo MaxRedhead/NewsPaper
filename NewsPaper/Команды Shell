@@ -1,0 +1,63 @@
+u1 = User.objects.create_user(username = "Ben")
+u2 = User.objects.create_user(username = "Tommy")
+
+Author.objects.create(authorUser=u1)
+Author.objects.create(authorUser=u2)
+
+Category.objects.create(name = "CARS")
+Category.objects.create(name = "SPORT")
+Category.objects.create(name = "POLITICS")
+Category.objects.create(name = "IT")
+
+author = Author.objects.get(id=1)
+author1 = Author.objects.get(id=2)
+
+Post.objects.create(author=author, categoryTypes = "AR", title = "Food Managment", text = "Text")
+Post.objects.create(author=author, categoryTypes = "AR", title = "Ford_Cars", text = "Text1")
+Post.objects.create(author=author1, categoryTypes = "NW", title = "World_Politics", text = "Text2")
+
+Post.objects.get(id=1).postCategory.add(Category.objects.get(id=1))
+Post.objects.get(id=2).postCategory.add(Category.objects.get(id=2))
+Post.objects.get(id=3).postCategory.add(Category.objects.get(id=3))
+
+Comment.objects.create(commentPost = Post.objects.get(id=1), commentUser = Author.objects.get(id=1).authorUser, text = "Some text")
+Comment.objects.create(commentPost = Post.objects.get(id=1), commentUser = Author.objects.get(id=1).authorUser, text = "Some another text")
+Comment.objects.create(commentPost = Post.objects.get(id=2), commentUser = Author.objects.get(id=2).authorUser, text = "Some text")
+Comment.objects.create(commentPost = Post.objects.get(id=3), commentUser = Author.objects.get(id=1).authorUser, text = "Some text")
+
+Comment.objects.get(id=1).like()
+
+Comment.objects.get(id=1).rating
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=1).like()
+Comment.objects.get(id=2).dislike()
+Comment.objects.get(id=2).dislike()
+Comment.objects.get(id=3).dislike()
+Comment.objects.get(id=4).like()
+Comment.objects.get(id=4).like()
+
+a = Author.objects.get(id=1)
+a.update_rating()
+a.authorRating
+
+a = Author.objects.order_by("-authorRating")[:1]
+a
+
+
+for i in a:
+i.authorRating
+i.authorUser.username
+
+var elems = document.getElementsByClassName("q_container");
+undefined
+for(var i = 0; i<elems.length; i++)
+    if (elems[i].style.display == "block" || elems[i].style.display != "block" && elems[i].style.display != "none")
+    {
+    var main = elems[i].id;
+    var x = main.replace(/^.{4}/, "");
+    var right = $(document.getElementById(main).getElementsByClassName("answ_normal right")).attr("data-id");
+    alert(right);
+    }
